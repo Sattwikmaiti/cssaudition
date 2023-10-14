@@ -1,0 +1,25 @@
+
+quetionid => the id for specific department a student wants to join 
+//note quetionid (printing mistake)
+Graphic design = 1
+Web development = 2
+App development = 3
+Event Management = 4
+Video design = 5
+Alumini Network / Social media handle = 6
+
+
+/* 
+User : 
+
+"username" :"Sattwik Maiti",
+"password" :"123456",
+"email" :"maitisattwik@gmail.com",
+"roll" : "69",
+"linkedin" : "linkedinurl",
+"github" : "githuburl",
+"qna" : [],
+"category" : []
+
+*/
+
