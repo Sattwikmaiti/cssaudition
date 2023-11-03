@@ -1,0 +1,63 @@
+/* FormClone.css */
+.container {
+
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-control {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+}
+
+.btn-primary {
+  background-color: #4285f4;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
+
+
+.inputs{
+  width:700px;
+  display:flex;
+  background-color:transparent;
+  flex-direction:column;
+  justify-content: flex-start;
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .inputs {
+    width:300px;
+  }
+  
+}
+
+
+.div{
+  background-image:url('https://img.freepik.com/premium-vector/abstract-colorful-geometric-shapes-background-banner-template_559819-465.jpg');
+  background-size:contain;
+}

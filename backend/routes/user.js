@@ -2,7 +2,6 @@
 const express=require("express");
 const router = express.Router();
 const User = require("../models/User.js");
-const QNA = require("../models/QNA.js");
 
 
 
@@ -19,14 +18,8 @@ router.get('/all',async(req,res)=>
 router.post("/register", async (req, res) => {
   
     const newUser = new User({
-      username: req.body.username,
-      profilename:req.body.profilename,
+     
       email: req.body.email,
-      phone : req.body.phone,
-      roll: req.body.roll,
-
-       github:req.body.github,
-       linkedin:req.body.linkedin,
      password:req.body.password,
 
     });
@@ -34,7 +27,7 @@ router.post("/register", async (req, res) => {
     try {
       const savedUser = await newUser.save();
      
-      res.status(201).json(savedUser);
+      res.status(201).json("Registered");
     } catch (err) {
       res.status(500).json(err);
     }
@@ -63,7 +56,7 @@ router.post("/register", async (req, res) => {
      
   
      
-      return res.status(200).json("Logged in Succesfully");
+      return res.status(200).json(user);
     } catch (err) {
       return res.status(500).json(err);
     }
@@ -78,51 +71,31 @@ router.get('/userdetails/:id',async(req,res)=>
   const user=await User.findById(req.params.id);
 
  
-   res.json({ user: user, originalPassword: user.password });
+   return res.json(user);
 });
 
 
 
-// delete user  by id 
-
-
-router.delete("/delete/:id",  async (req, res) => {
-    try {
-      await User.findByIdAndDelete(req.params.id);
-      res.status(200).json("User has been deleted...");
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-
-// update userdetails 
-
-  router.put("/updateqna/:id", async (req, res) => {
-    const newQNA = new QNA({
-      quetionid : req.body.quetionid,
-      question: req.body.question,
-      answer: req.body.answer
- 
-     });
+  router.put('/updateUser/:userId', async (req, res) => {
+    const userId = req.params.userId;
+    const updatedFields = req.body; // Fields to be updated based on the request body
   
     try {
-   
-
-      const user = await User.findById(req.params.id);
-
-      if(user)
-      {
-        user.qna.push(newQNA);
-       user.markModified('qna');
-       await user.save();
-
-
+      const user = await User.findOneAndUpdate(
+        { _id: userId },
+        { $set: updatedFields },
+        { new: true } // To return the updated document
+      );
+  
+      if (user) {
+        return res.json({ message: 'User updated successfully', user });
+      } else {
+        return res.status(404).json({ message: 'User not found or update failed.' });
       }
-      res.status(200).json(user);
-    } catch (err) {
-      res.status(500).json(err);
+    } catch (error) {
+      console.error('Error updating user:', error);
+      return res.status(500).json({ message: 'Internal Server Error' });
     }
   });
-  
 
   module.exports = router;

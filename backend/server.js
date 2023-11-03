@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const userRoute = require("./routes/user");
-const qnaRoute = require("./routes/qna");
+
 dotenv.config();
 
 mongoose
@@ -15,7 +15,8 @@ mongoose
   });
 
 app.use(cors());
-app.use("/api/users", userRoute);
-app.use("/api/qna", qnaRoute);
 app.use(express.json());
+app.use("/api/users", userRoute);
+
+
 app.listen(8000, () => console.log('Running on port 8000'));
