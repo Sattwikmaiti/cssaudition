@@ -21,7 +21,7 @@ const LoginPage = () => {
      
 
       // Make a POST request to the registration API endpoint
-      const response = await axios.post('https://cssaudition2k23latest.onrender.com/register', {
+      const response = await axios.post('https://cssaudition2k23latest.onrender.com/api/users/register', {
         email,password
       });
 
@@ -56,7 +56,7 @@ const LoginPage = () => {
       };
 
       // Make a POST request to the login API endpoint
-      const response = await axios.post('https://cssaudition2k23latest.onrender.com/login', loginData);
+      const response = await axios.post('https://cssaudition2k23latest.onrender.com/api/users/login', loginData);
 
       // Handle the response
       if (response.data!=null) {
