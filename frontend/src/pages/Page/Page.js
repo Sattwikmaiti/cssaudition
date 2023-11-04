@@ -96,7 +96,7 @@ const FormClone = () => {
   useEffect(() => {
     console.log("hello")
     // Define the URL you want to fetch data from
-    const apiUrl = `http://localhost:8000/api/users/userdetails/${JSON.parse(localStorage.getItem('id'))}`; // Replace with your API URL
+    const apiUrl = `https://cssaudition.onrender.com/userdetails/${JSON.parse(localStorage.getItem('id'))}`; // Replace with your API URL
 
     // Use Axios to make the GET request
     axios.get(apiUrl)
@@ -138,7 +138,7 @@ const FormClone = () => {
 
 console.log( userId)
         // Make the PUT request to update the user
-        const response = await axios.put(`http://localhost:8000/api/users/updateUser/${userId}`,  {
+        const response = await axios.put(`https://cssaudition.onrender.com/updateUser/${userId}`,  {
 
         username,
         phone,
