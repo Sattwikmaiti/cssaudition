@@ -17,20 +17,34 @@ router.get('/all',async(req,res)=>
 //  register of user 
 router.post("/register", async (req, res) => {
   
+
+
+
     const newUser = new User({
      
       email: req.body.email,
      password:req.body.password,
 
     });
-  
-    try {
-      const savedUser = await newUser.save();
-     
-      res.status(201).json("Registered");
-    } catch (err) {
-      res.status(500).json(err);
+
+    const user = await User.findOne({ email :req.body.email });
+    
+    if (user) {
+      res.status(500).json("error");
+
+    } else {
+      try {
+        const user= await newUser.save();
+          console.log("usser qq")
+          res.status(201).json(user);
+        } catch (err) {
+          console.log("ee")
+          res.status(500).json(err);
+        }
+      
     }
+  
+    
   });
 
  // login of user using email and password

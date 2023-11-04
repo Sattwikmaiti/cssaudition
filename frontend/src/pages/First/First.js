@@ -3,35 +3,44 @@ import './First.css'; // Import the CSS file
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
-
+import { toast, ToastContainer } from 'react-toastify';
 const LoginPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const notify = () => {
+    
 
+    toast.error("Oops Failed Attempt ! Try once again", {
+      position: toast.POSITION.TOP_CENTER
+    });
+  };
   const handleRegister = async () => {
     try {
       // Create an object containing the registration data
-      const registrationData = {
-        email: email,
-        password: password,
-      };
+     
 
       // Make a POST request to the registration API endpoint
-      const response = await axios.post('http://localhost:8000/api/users/register', registrationData);
+      const response = await axios.post('http://localhost:8000/api/users/register', {
+        email,password
+      });
 
       // Handle the response, e.g., show a success message
-      if (response.data === 'Registered') {
+      if (response.data) {
         // Successful login
         console.log('Registerd successful');
-        console.log('Response Data:', response.data);
+        localStorage.setItem('id',JSON.stringify(response.data._id));
+       
         navigate('/page'); // Navigate to the '/page' route
       } else {
         // Failed login
+        notify()
         console.log('Login failedhere');
       }
     } catch (error) {
+
       // Handle login errors
+      notify()
       console.error('Login failed');
       console.error('Error:', error);
     }
@@ -62,6 +71,7 @@ const LoginPage = () => {
       }
     } catch (error) {
       // Handle login errors
+      notify()
       console.error('Login failed');
       console.error('Error:', error);
     }
@@ -95,9 +105,11 @@ const LoginPage = () => {
         <div className="input-container">
           <button className="button" onClick={handleRegister}>
             Register
+            <ToastContainer />
           </button>
           <button className="button" onClick={handleLogin}>
             Login
+            <ToastContainer />
           </button>
         </div>
       </div>

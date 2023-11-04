@@ -8,6 +8,9 @@ import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
+import { toast, ToastContainer } from 'react-toastify';
+import loader  from "./loader.gif"
+import "react-toastify/dist/ReactToastify.css";
 
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
@@ -69,16 +72,27 @@ function getStyles(name, DomainName, theme) {
 
 
 const FormClone = () => {
+  const notify = () => {
+    
 
-
-  const [data, setData] = useState();
-  const [loading, setLoading] = useState(true);
-  const handleonChange = (event) => {
-    // Update the state based on the form input fields
-    const { name, value } = event.target;
-    setData({ ...data, [name]: value });
+    toast.success("Successfully Saved!", {
+      position: toast.POSITION.TOP_CENTER
+    });
   };
 
+  const [data, setData] = useState();
+  const [userId,setuserId]=useState()
+  const [loading, setLoading] = useState(true);
+  const handleonChange = (fieldName) => (event) => {
+    // Clone the current data object to avoid mutating state directly
+    const newData = { ...data };
+    
+    // Update the specific field in the cloned object based on fieldName
+    newData[fieldName] = event.target.value;
+ // console.log(newData)
+    // Set the updated data object to state
+    setData(newData); // Assuming you have a state variable named setData for your data
+  };
   useEffect(() => {
     console.log("hello")
     // Define the URL you want to fetch data from
@@ -89,170 +103,222 @@ const FormClone = () => {
       .then((response) => {
         // Data has been successfully fetched
         setData(response.data);
+        setuserId(response.data._id)
         setLoading(false);
         console.log(response.data)
+        //console.log(response.data)
       })
       .catch((error) => {
         // Handle any errors
         console.error('Error fetching data:', error);
         setLoading(false);
       });
-  }, [data]);
+  }, []);
   const theme = useTheme();
-  const [DomainName, setDomainName] = React.useState([]);
 
-  const handleChange = (event) => {
+  const handleFieldChange = (fieldName) => (event) => {
     const {
       target: { value },
     } = event;
-    setDomainName(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
-    );
+    if (fieldName === 'category') {
+      // Assuming you want to update the 'category' field using setData
+      const newData = { ...data };
+      newData[fieldName] = typeof value === 'string' ? value.split(',') : value;
+      setData(newData);
+    }
   };
+  
+    const handleUpdateUser = async () => {
+      try {
+        // Define the updated fields
+       
+       const copyData = { ...data };
+       const {username,phone,roll,linked,github,category,add1,add2,email,password}=copyData
+      
+
+console.log( userId)
+        // Make the PUT request to update the user
+        const response = await axios.put(`http://localhost:8000/api/users/updateUser/${userId}`,  {
+
+        username,
+        phone,
+        roll,
+        linked,
+        github,
+        category,
+        add1,
+        add2,
+        } );
+  
+        if (response) {
+          console.log('User updated successfully:', response.data.message);
+          notify()
+        } else {
+          console.error('User not found or update failed:', response.data.message);
+        }
+      } catch (error) {
+        console.error('Error updating user:', error);
+      }
+    };
+
+
+  
+  
   return (
+
     <div className="div">
-    <Container maxWidth="md"  style={{ backgroundColor: 'cadetblue', padding: '20px',height:'auto'}}>
-      <Item elevation={5}>
-
-      <Typography  align="center" gutterBottom>
-        Computer Science Society Audtion Form
-      </Typography>
-      </Item>
-      <form>
-        <div style={{ marginBottom: '20px' }}>
-         <Item elevation={5}>
-
-
-         <Typography  align='left' gutterBottom>
-        Name
-      </Typography>
-         <TextField id="standard-basic" className="inputs"   onChange={handleonChange} variant="standard" />
+       {loading ? (
+        // Display a loading indicator here
+        <div className="loading">
+          loading...
           
-          </Item> 
-        
+
         </div>
-        <div style={{ marginBottom: '20px' }}>
-         <Item elevation={5}>
-
-
-         <Typography  align='left' gutterBottom>
-        Phone Number 
-      </Typography>
-         <TextField id="standard-basic" className="inputs"   variant="standard" />
+      ) : ( <div className="div">
+      <Container maxWidth="md"  style={{ backgroundColor: '#E3E4FA', padding: '20px',height:'auto', borderRadius:'10px'}}>
+        <Item elevation={5}>
+  
+        <Typography  align="center" gutterBottom>
+          Computer Science Society Audtion Form
+        </Typography>
+        </Item>
+        <form>
+          <div style={{ marginBottom: '20px' }}>
+           <Item elevation={5}>
+  
+  
+           <Typography  align='left' gutterBottom>
+          Name
+        </Typography>
+           <TextField id="standard-basic" className="inputs"  value={data?.username}  onChange={handleonChange('username')} variant="standard" />
+            
+            </Item> 
           
-          </Item> 
-        
-        </div> <div style={{ marginBottom: '20px' }}>
-         <Item elevation={5}>
-
-
-         <Typography  align='left' gutterBottom>
-        Roll Number 
-      </Typography>
-         <TextField id="standard-basic" className="inputs"  variant="standard" />
+          </div>
+          <div style={{ marginBottom: '20px' }}>
+           <Item elevation={5}>
+  
+  
+           <Typography  align='left' gutterBottom>
+          Phone Number 
+        </Typography>
+           <TextField id="standard-basic" className="inputs" value={data?.phone} onChange={handleonChange('phone')} variant="standard" />
+            
+            </Item> 
           
-          </Item> 
-        
-        </div>
-        <div style={{ marginBottom: '20px' }}>
-         <Item elevation={5}>
-
-
-         <Typography  align='left' gutterBottom>
-        LinkedIn Profile Link
-      </Typography>
-         <TextField id="standard-basic" className="inputs"  variant="standard" />
+          </div> <div style={{ marginBottom: '20px' }}>
+           <Item elevation={5}>
+  
+  
+           <Typography  align='left' gutterBottom>
+          Roll Number 
+        </Typography>
+           <TextField id="standard-basic" className="inputs"  value={data?.roll} onChange={handleonChange('roll')}variant="standard" />
+            
+            </Item> 
           
-          </Item> 
-        
-        </div>
-        <div style={{ marginBottom: '20px' }}>
-         <Item elevation={5}>
-
-
-         <Typography  align='left' gutterBottom>
-        Github Link ( For Developer Roles) 
-      </Typography>
-         <TextField id="standard-basic" className="inputs"  variant="standard" />
+          </div>
+          <div style={{ marginBottom: '20px' }}>
+           <Item elevation={5}>
+  
+  
+           <Typography  align='left' gutterBottom>
+          LinkedIn Profile Link
+        </Typography>
+           <TextField id="standard-basic" className="inputs" value={data?.linkedin} onChange={handleonChange('linked')}variant="standard" />
+            
+            </Item> 
           
-          </Item> 
-        
-        </div>
-        <div style={{ marginBottom: '20px' }}>
-         <Item elevation={5}>
-         <InputLabel id="demo-multiple-chip-label">Interested Domains</InputLabel>
-         
-        <Select
-          labelId="demo-multiple-chip-label"
-          id="demo-multiple-chip"
-          multiple
-          value={DomainName}
-          onChange={handleChange}
-          input={<OutlinedInput id="select-multiple-chip"  />}
-          renderValue={(selected) => (
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-              {selected.map((value) => (
-                <Chip key={value} label={value} />
-              ))}
-            </Box>
-          )}
-          MenuProps={MenuProps}
-        >
-          {names.map((name) => (
-            <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, DomainName, theme)}
-            >
-              {name}
-            </MenuItem>
-          ))}
-        </Select>
+          </div>
+          <div style={{ marginBottom: '20px' }}>
+           <Item elevation={5}>
+  
+  
+           <Typography  align='left' gutterBottom>
+          Github Link ( For Developer Roles) 
+        </Typography>
+           <TextField id="standard-basic" className="inputs"  value={data?.github}  onChange={handleonChange('github')}variant="standard" />
+            
+            </Item> 
           
-          </Item> 
-        
-        </div>
-
-
-        <div style={{ marginBottom: '20px' }}>
-         <Item elevation={5}>
-
-
-         <Typography  align='left' gutterBottom>
-        Additional Links 1 (if any like figma, behance, dribble,youtube etc) 
-      </Typography>
-         <TextField id="standard-basic" className="inputs"  variant="standard" />
+          </div>
+          <div style={{ marginBottom: '20px' }}>
+           <Item elevation={5}>
+           <InputLabel id="demo-multiple-chip-label">Interested Domains</InputLabel>
+           
+          <Select
+            labelId="demo-multiple-chip-label"
+            id="demo-multiple-chip"
+            multiple
+            value={data.category}
+            onChange={handleFieldChange('category')}
+            input={<OutlinedInput id="select-multiple-chip"  />}
+            renderValue={(selected) => (
+              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                {selected.map((value) => (
+                  <Chip key={value} label={value} />
+                ))}
+              </Box>
+            )}
+            MenuProps={MenuProps}
+          >
+            {names.map((name) => (
+              <MenuItem
+                key={name}
+                value={name}
+                style={getStyles(name, data.category, theme)}
+              >
+                {name}
+              </MenuItem>
+            ))}
+          </Select>
+            
+            </Item> 
           
-          </Item> 
-        
-        </div>
-        <div style={{ marginBottom: '20px' }}>
-         <Item elevation={5}>
-
-
-         <Typography  align='left' gutterBottom>
-        Additional Links 2  
-      </Typography>
-         <TextField id="standard-basic" className="inputs"  variant="standard" />
+          </div>
+  
+  
+          <div style={{ marginBottom: '20px' }}>
+           <Item elevation={5}>
+  
+  
+           <Typography  align='left' gutterBottom>
+          Additional Links 1 (if any like figma, behance, dribble,youtube etc) 
+        </Typography>
+           <TextField id="standard-basic" className="inputs" value={data.add1}  onChange={handleonChange('add1')} variant="standard" />
+            
+            </Item> 
           
-          </Item> 
-        
-        </div>
-
-
-
-        <Button
-          variant="contained"
-          color="primary"
-          fullWidth
+          </div>
+          <div style={{ marginBottom: '20px' }}>
+           <Item elevation={5}>
+  
+  
+           <Typography  align='left' gutterBottom>
+          Additional Links 2  
+        </Typography>
+           <TextField id="standard-basic" className="inputs"  value={data.add2} onChange={handleonChange('add2')} variant="standard" />
+            
+            </Item> 
           
-        >
-          Submit
-        </Button>
-      </form>
-    </Container>
+          </div>
+  
+  
+  
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+             onClick={handleUpdateUser}
+          >
+            Submit
+            <ToastContainer />
+          </Button>
+        </form>
+      </Container>
+      </div> )}
     </div>
+   
   );
 };
 
