@@ -20,8 +20,8 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
   color: theme.palette.text.secondary,
   height: 'auto',
-  
-  lineHeight: '60px',
+  minHeight: '100px',
+  lineHeight: '100px',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -29,7 +29,7 @@ const Item = styled(Paper)(({ theme }) => ({
   borderTopRightRadius: '10px',
   borderBottom: '2px solid lightgrey', // Set the bottom border
   backgroundColor: '#E3E4FA',
-  padding: '10px',
+  padding: '15px',
   borderTop: '10px solid #95B9C7 ',
   marginBottom:'10px' // Set the top border with blue color
 }));
@@ -175,10 +175,12 @@ console.log( userId)
 
         </div>
       ) : ( <div className="div">
-      <Container maxWidth="md"  style={{ backgroundColor: '#E3E4FA', padding: '20px',height:'auto', borderRadius:'10px'}}>
+      <Container maxWidth="md"  style={{ padding: '20px',height:'auto', borderRadius:'10px'}}>
+
+        <Item><img src={loader} style={{height:'15rem'}} /></Item>
         <Item elevation={5}>
   
-        <Typography  align="center" gutterBottom>
+        <Typography  align="center"   style={{height:'5rem',display:'flex',justifyContent:'center',alignItems:'center'}}  gutterBottom>
           Computer Science Society Audtion Form
         </Typography>
         </Item>
