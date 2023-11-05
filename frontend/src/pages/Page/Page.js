@@ -199,7 +199,7 @@ console.log( userId)
         <Item elevation={5}>
   
         <Typography  align="center"   style={{height:'5rem',display:'flex',justifyContent:'center',alignItems:'center',fontWeight:'bold',fontSize:'1rem'}}  gutterBottom>
-          Computer Science Society Audtion Form
+          CSE Students Society Audition Form
         </Typography>
         </Item>
         <form>
