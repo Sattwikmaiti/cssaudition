@@ -149,7 +149,7 @@ const FormClone = () => {
         // Define the updated fields
        
        const copyData = { ...data };
-       const {username,phone,roll,linked,github,category,add1,add2,email,password}=copyData
+       const {username,phone,roll,linkedin,github,category,add1,add2,email,password}=copyData
       
 
 console.log( userId)
@@ -159,7 +159,7 @@ console.log( userId)
         username,
         phone,
         roll,
-        linked,
+        linkedin,
         github,
         category,
         add1,
