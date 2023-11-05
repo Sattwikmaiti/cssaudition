@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LanguageIcon from '@mui/icons-material/Language';
 const LoginPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -81,7 +84,7 @@ const LoginPage = () => {
     <div className="login-page-container">
       <div className="left-half"></div>
       <div className="right-half">
-        <h2 className="welcome-text">Welcome back</h2>
+        <h4 className="welcome-text">Welcome To CSS Auditions !!</h4>
         <div className="input-container">
           <TextField
             id="outlined-basic"
@@ -111,6 +114,18 @@ const LoginPage = () => {
             Login
             <ToastContainer />
           </button>
+        </div>
+
+        <div className="input-containers">
+          <div className="i1">
+             <a href="https://www.instagram.com/cssnitdgp/?hl=en" target="_blank"><InstagramIcon  /></a> 
+          </div>
+          <div className="i2">
+           <a href="https://www.linkedin.com/company/cssnitdgp/mycompany/" target="_blank"> <LinkedInIcon /></a>
+          </div>
+          <div className="i3">
+           <a href="https://www.cssnitdgp.in/" target="_blank"> <LanguageIcon  /></a>
+          </div>
         </div>
       </div>
     </div>

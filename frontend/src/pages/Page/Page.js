@@ -18,23 +18,39 @@ import axios from 'axios';
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   textAlign: 'center',
-  color: theme.palette.text.secondary,
+  color: 'black',
   height: 'auto',
   minHeight: '100px',
   lineHeight: '100px',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  borderTopLeftRadius: '10px',
-  borderTopRightRadius: '10px',
+  borderTopLeftRadius: '8px',
+  borderTopRightRadius: '8px',
   borderBottom: '2px solid lightgrey', // Set the bottom border
-  backgroundColor: '#E3E4FA',
+  backgroundColor: '#FAF9F6',
   padding: '15px',
   borderTop: '10px solid #95B9C7 ',
   marginBottom:'10px' // Set the top border with blue color
 }));
 
 
+const Itembanner = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+  height: 'auto',
+  minHeight: '300px',
+  lineHeight: '200px',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+ 
+  
+  width:'80%',
+  borderTop: '10px solid #95B9C7 ',
+  marginBottom:'10px' // Set the top border with blue color
+}));
 
 
 const ITEM_HEIGHT = 48;
@@ -176,11 +192,13 @@ console.log( userId)
         </div>
       ) : ( <div className="div">
       <Container maxWidth="md"  style={{ padding: '20px',height:'auto', borderRadius:'10px'}}>
-
-        <Item><img src={loader} style={{height:'15rem'}} /></Item>
+             <div className="div" style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+             <Itembanner ><img src={'https://media.licdn.com/dms/image/C560BAQF6lm99eoAgjg/company-logo_200_200/0/1675197081133?e=2147483647&v=beta&t=Vmmcb012jJ98_Y2CyDrqrrLnPpokbUDRep7KX4IK2cg'} style={{height:'15rem'}} /></Itembanner>
+             </div>
+        
         <Item elevation={5}>
   
-        <Typography  align="center"   style={{height:'5rem',display:'flex',justifyContent:'center',alignItems:'center'}}  gutterBottom>
+        <Typography  align="center"   style={{height:'5rem',display:'flex',justifyContent:'center',alignItems:'center',fontWeight:'bold',fontSize:'1rem'}}  gutterBottom>
           Computer Science Society Audtion Form
         </Typography>
         </Item>
@@ -309,11 +327,11 @@ console.log( userId)
   
           <Button
             variant="contained"
-            color="primary"
+            style={{backgroundColor: '#95B9C7',color:'black'}}
             fullWidth
              onClick={handleUpdateUser}
           >
-            Submit
+            Save 
             <ToastContainer />
           </Button>
         </form>

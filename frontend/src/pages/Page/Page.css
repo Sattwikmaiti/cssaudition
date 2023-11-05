@@ -57,8 +57,13 @@ h1 {
 }
 
 
-.div{
+body{
 background-color:#e7feff 
 }
 
 
+
+
+#standard-basic{
+  margin-top:1rem
+}
