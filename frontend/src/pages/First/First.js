@@ -7,6 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LanguageIcon from '@mui/icons-material/Language';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 const LoginPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -126,6 +127,9 @@ const LoginPage = () => {
           </div>
           <div className="i3">
            <a href="https://www.cssnitdgp.in/" target="_blank"> <LanguageIcon  /></a>
+          </div>
+          <div className="i3">
+           <a href="https://web.whatsapp.com/" target="_blank"> <WhatsAppIcon /></a>
           </div>
         </div>
 
