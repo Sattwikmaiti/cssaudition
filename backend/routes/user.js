@@ -3,11 +3,20 @@ const express=require("express");
 const router = express.Router();
 const User = require("../models/User.js");
 
-
+const json2csv = require('json2csv').Parser;
+const fs = require('fs');
 
 router.get('/all',async(req,res)=>
 {   try{
     const users=await User.find();
+    const fields = ['_id', 'username', 'email','phone','roll','password','linkedin','github','add1','add2','category','createdAt','updatedAt',
+  '__v']; // Define the fields you want in the CSV
+    const json2csvParser = new json2csv({ fields });
+    const csv = json2csvParser.parse(users);
+
+    fs.writeFileSync('output.csv', csv); // Save CSV file
+
+    res.attachment('output.csv'); 
     res.status(200).json(users)
 } catch(err){
     res.status(500).json(err)
