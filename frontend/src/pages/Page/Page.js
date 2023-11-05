@@ -227,7 +227,7 @@ console.log( userId)
            <Typography  align='left' gutterBottom>
           LinkedIn Profile Link
         </Typography>
-           <TextField id="standard-basic" className="inputs" value={data?.linkedin} onChange={handleonChange('linked')}variant="standard" />
+           <TextField id="standard-basic" className="inputs" value={data?.linkedin} onChange={handleonChange('linkedin')}variant="standard" />
             
             </Item> 
           
