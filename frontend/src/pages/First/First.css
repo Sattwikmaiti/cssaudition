@@ -103,7 +103,26 @@
 .input-containers{
   display:flex;
   flex-direction : row;
- gap:1rem;
+ gap:1rem; 
+
+ position: absolute;
+ bottom:10rem;
+
+ margin-bottom: 20px;
+ text-align: center;
  
   justify-content:center
+}
+
+
+.svg1{
+  position:absolute;
+  top:0;
+  
+  
+}
+.svg2{
+  position:absolute;
+bottom:0;
+  
 }
