@@ -21,19 +21,34 @@ const LoginPage = () => {
       position: toast.POSITION.TOP_CENTER
     });
   };
+  function checkSuffix(inputString) {
+  var suffix = "@btech.nitdgp.ac.in";
+
+  // Using the endsWith() method to check if the string ends with the specified suffix
+  if (inputString.endsWith(suffix)) {
+    return true;
+  } else {
+    return false;
+  }
+}
   const handleRegister = async () => {
     setRegister(true);
     try {
       // Create an object containing the registration data
      
-
+   if(checkSuffix(email)===false)
+   {
+    setRegister(false);
+    notify()
+    return;
+   }
       // Make a POST request to the registration API endpoint
       const response = await axios.post('https://cssaudition2k23latest.onrender.com/api/users/register', {
         email,password
       });
 
       // Handle the response, e.g., show a success message
-      if (response.data) {
+      if (response.data ) {
         // Successful login
         console.log('Registerd successful');
         localStorage.setItem('id',JSON.stringify(response.data._id));
@@ -140,9 +155,7 @@ const LoginPage = () => {
           <div className="i3">
            <a href="https://www.cssnitdgp.in/" target="_blank"> <LanguageIcon  /></a>
           </div>
-          <div className="i3">
-           <a href="https://web.whatsapp.com/" target="_blank"> <WhatsAppIcon /></a>
-          </div>
+          
         </div>
 
         <svg  className="svg2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
