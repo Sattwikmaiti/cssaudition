@@ -5,6 +5,7 @@
   .login-page-container {
     display: flex;
     height: 100vh;
+    
   }
   .left-half {
     flex: 1.5;
@@ -24,7 +25,8 @@
   }
   .login-page-container {
     padding-top:20vh;
-    height: 100vh;
+    height: auto;
+    overflow-y:hidden
   }
 
  
