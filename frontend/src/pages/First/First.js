@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import './First.css'; // Import the CSS file
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
@@ -7,19 +7,27 @@ import { toast, ToastContainer } from 'react-toastify';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LanguageIcon from '@mui/icons-material/Language';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+
 const LoginPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const[register,setRegister]=useState(false);
    const[login,setLogin]=useState(false);
+   const[error,setError]=useState("")
+
+
+
+
+   
   const notify = () => {
     
-
-    toast.error("Oops Failed Attempt ! Try once again", {
+ console.log({error})
+    toast.error(`${error}`, {
       position: toast.POSITION.TOP_CENTER
     });
+    setError("")
+  
   };
   function checkSuffix(inputString) {
   var suffix = "@btech.nitdgp.ac.in";
@@ -32,16 +40,27 @@ const LoginPage = () => {
   }
 }
   const handleRegister = async () => {
+    console.log("clicked")
     setRegister(true);
     try {
       // Create an object containing the registration data
-     
+      if(email==='' || password==='')
+      {
+        setError("Empty Password or Email")
+        setRegister(false);
+        //notify()
+        return;
+      }
    if(checkSuffix(email)===false)
-   {
+   { 
+    console.log("idhar")
+    setError("Please use your college email id")
     setRegister(false);
-    notify()
+   //  notify()
     return;
    }
+
+   
       // Make a POST request to the registration API endpoint
       const response = await axios.post('https://cssaudition2k23latest.onrender.com/api/users/register', {
         email,password
@@ -56,14 +75,16 @@ const LoginPage = () => {
         navigate('/page'); // Navigate to the '/page' route
       } else {
         // Failed login
-        notify()
+        
+        setError('Already Registered Email');
+       // notify()
         setRegister(false);
-        console.log('Login failedhere');
       }
     } catch (error) {
       setRegister(false);
+      setError('Wrong Password or Wrong Email');
       // Handle login errors
-      notify()
+      //notify()
       console.error('Login failed');
       console.error('Error:', error);
     }
@@ -72,6 +93,14 @@ const LoginPage = () => {
   const handleLogin = async () => {
     setLogin(true);
     console.log(email);
+    if(email==='' || password==='')
+      {
+        setLogin(false);
+        setError("Empty Password or Email")
+        
+       // notify()
+        return;
+      }
     try {
       // Create an object containing the login data
       const loginData = {
@@ -93,16 +122,25 @@ const LoginPage = () => {
       } else {
         // Failed login
         setLogin(false);
-        console.log('Login failedhere');
+
+        setError('Wrong Password or Wrong Email');
+        //notify()
       }
     } catch (error) {
       setLogin(false);
+      setError('Wrong Password or Wrong Email');
       // Handle login errors
-      notify()
+      //notify()
       console.error('Login failed');
       console.error('Error:', error);
     }
   };
+
+  useEffect(() => {
+    if (error !== '') {
+      notify();
+    }
+  }, [error, notify]);
 
   return (
     <div className="login-page-container">
