@@ -1,6 +1,7 @@
 
 import Login from "./pages/First/First";
 import Page from "./pages/Page/Page";
+import Thank  from "./pages/Page/Thank";
 
 import {
   BrowserRouter as Router,
@@ -20,6 +21,7 @@ const App = () => {
         <Route exact path="/" element={<Login/>}/>
        
         <Route path="/page"element={ <Page />}/>
+        <Route path="/thank"element={ <Thank />}/>
        
       </Routes>
     </Router>

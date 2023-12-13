@@ -11,7 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { toast, ToastContainer } from 'react-toastify';
 import loader  from "./loader.gif"
 import "react-toastify/dist/ReactToastify.css";
-
+import { useNavigate } from 'react-router-dom';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 import axios from 'axios';
@@ -88,6 +88,7 @@ function getStyles(name, DomainName, theme) {
 
 
 const FormClone = () => {
+  const navigate=useNavigate();
   const notify = () => {
     
 
@@ -169,6 +170,42 @@ console.log( userId)
         if (response) {
           console.log('User updated successfully:', response.data.message);
           notify()
+        } else {
+          console.error('User not found or update failed:', response.data.message);
+        }
+      } catch (error) {
+        console.error('Error updating user:', error);
+      }
+    };
+
+
+    const handleSubmitUser = async () => {
+      
+
+      try {
+        // Define the updated fields
+       
+       const copyData = { ...data };
+       const {username,phone,roll,linkedin,github,category,add1,add2,email,password}=copyData
+      
+
+console.log( userId)
+        // Make the PUT request to update the user
+        const response = await axios.put(`https://cssaudition2k23latest.onrender.com/api/users/updateUser/${userId}`,  {
+
+        username,
+        phone,
+        roll,
+        linkedin,
+        github,
+        category,
+        add1,
+        add2,
+        } );
+  
+        if (response) {
+          console.log('User updated successfully:', response.data.message);
+        navigate('/thank');
         } else {
           console.error('User not found or update failed:', response.data.message);
         }
@@ -333,11 +370,20 @@ console.log( userId)
   
           <Button
             variant="contained"
-            style={{backgroundColor: '#95B9C7',color:'black'}}
+            style={{backgroundColor: '#95B9C7',color:'black',marginBottom:'10px'}}
             fullWidth
              onClick={handleUpdateUser}
           >
             Save 
+            <ToastContainer />
+          </Button>
+          <Button
+            variant="contained"
+            style={{backgroundColor: '#95B9C7',color:'black'}}
+            fullWidth
+             onClick={handleSubmitUser}
+          >
+            Submit
             <ToastContainer />
           </Button>
         </form>
