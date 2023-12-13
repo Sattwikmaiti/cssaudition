@@ -12,6 +12,8 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const[register,setRegister]=useState(false);
+   const[login,setLogin]=useState(false);
   const notify = () => {
     
 
@@ -20,6 +22,7 @@ const LoginPage = () => {
     });
   };
   const handleRegister = async () => {
+    setRegister(true);
     try {
       // Create an object containing the registration data
      
@@ -34,15 +37,16 @@ const LoginPage = () => {
         // Successful login
         console.log('Registerd successful');
         localStorage.setItem('id',JSON.stringify(response.data._id));
-       
+       setRegister(false);
         navigate('/page'); // Navigate to the '/page' route
       } else {
         // Failed login
         notify()
+        setRegister(false);
         console.log('Login failedhere');
       }
     } catch (error) {
-
+      setRegister(false);
       // Handle login errors
       notify()
       console.error('Login failed');
@@ -51,6 +55,7 @@ const LoginPage = () => {
   };
 
   const handleLogin = async () => {
+    setLogin(true);
     console.log(email);
     try {
       // Create an object containing the login data
@@ -66,14 +71,17 @@ const LoginPage = () => {
       if (response.data!=null) {
         // Successful login
         console.log('Login successful');
+        setLogin(false);
         localStorage.setItem('id',JSON.stringify(response.data._id));
        // console.log('Response Data:', response.data);
         navigate('/page'); // Navigate to the '/page' route
       } else {
         // Failed login
+        setLogin(false);
         console.log('Login failedhere');
       }
     } catch (error) {
+      setLogin(false);
       // Handle login errors
       notify()
       console.error('Login failed');
@@ -108,14 +116,18 @@ const LoginPage = () => {
           />
         </div>
         <div className="input-container">
-          <button className="button" onClick={handleRegister}>
+        {register===false ? <button className="button" onClick={handleRegister} >
             Register
             <ToastContainer />
-          </button>
-          <button className="button" onClick={handleLogin}>
+          </button>:<button className="button" >
+            .......
+          </button> }
+          {login===false ? <button className="button" onClick={handleLogin} >
             Login
             <ToastContainer />
-          </button>
+          </button>:<button className="button" >
+           ......
+          </button> }
         </div>
 
         <div className="input-containers">

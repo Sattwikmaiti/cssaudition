@@ -112,6 +112,7 @@ const FormClone = () => {
   };
   useEffect(() => {
     console.log("hello")
+    
     // Define the URL you want to fetch data from
     const apiUrl = `https://cssaudition2k23latest.onrender.com/api/users/userdetails/${JSON.parse(localStorage.getItem('id'))}`; // Replace with your API URL
 

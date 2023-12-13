@@ -71,13 +71,19 @@
 
 .button{
   padding:1rem;
+  
   color: white;
   border: 0;
   background-color:black;
   margin:1rem
 }
 
+.button:hover{
+  cursor:pointer;
+  background-color:grey;
+  transition: all 0.2 ease-in-out
 
+}
 .i1,.i2,.i3,a{
   color:grey;
   
@@ -127,4 +133,11 @@
   position:absolute;
 bottom:0;
   
+}
+
+
+.button img{
+  height:2rem;
+  width:2rem;
+
 }
