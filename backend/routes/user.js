@@ -2,7 +2,7 @@
 const express=require("express");
 const router = express.Router();
 const User = require("../models/User.js");
-
+const nodemailer = require('nodemailer');
 const json2csv = require('json2csv').Parser;
 const fs = require('fs');
 
@@ -27,8 +27,27 @@ router.get('/all',async(req,res)=>
 router.post("/register", async (req, res) => {
   
 
+// console.log("here")
+// const transporter = nodemailer.createTransport({
+         
+//           service: 'gmail.com',
+//           auth:{
+//               user:'hachkathoncommon@gmail.com',
+//               pass:'Sattwik@2002'
+//           }
+//         });
+//         console.log(transporter)
 
 
+//         const info = await transporter.sendMail({
+//           from: '"Sattwik Maiti" <hachkathoncommon@gmail.com>', // sender address
+//           to: `${req.body.email}`, // list of receivers
+//           subject: "CSS Registration SuccessFull", // Subject line
+//           text: "Welcome To Computer Science Society", // plain text body
+//           html: " Your Question Paper :  <img  src={'https://media.licdn.com/dms/image/C560BAQF6lm99eoAgjg/company-logo_200_200/0/1675197081133?e=2147483647&v=beta&t=Vmmcb012jJ98_Y2CyDrqrrLnPpokbUDRep7KX4IK2cg'} style={{height:'15rem'}} /> ",
+       
+//         })
+//         console.log("Message sent: %s", info.messageId);
     const newUser = new User({
      
       email: req.body.email,
@@ -44,6 +63,7 @@ router.post("/register", async (req, res) => {
     } else {
       try {
         const user= await newUser.save();
+        
           console.log("usser qq")
           res.status(201).json(user);
         } catch (err) {

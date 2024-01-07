@@ -258,9 +258,7 @@ console.log( userId)
             Likhita : <a href="tel:91 8617868717">+91 8617868717</a>
            
         </Typography>
-        <Typography  align="center" >
-           <a href="https://chat.whatsapp.com/F0CaNSqK1O72yLGFnNAceL" target="_blank">Join Whatsapp Group</a>
-        </Typography>
+        
         </Item>
         <form>
           <div style={{ marginBottom: '20px' }}>
