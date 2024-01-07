@@ -41,13 +41,13 @@ const Itembanner = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
   height: 'auto',
   minHeight: '300px',
-  lineHeight: '200px',
+  lineHeight: '300px',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
  
   
-  width:'80%',
+  width:'300px',
   borderTop: '10px solid #95B9C7 ',
   marginBottom:'10px' // Set the top border with blue color
 }));
@@ -230,9 +230,21 @@ console.log( userId)
         </div>
       ) : ( <div className="div">
       <Container maxWidth="md"  style={{ padding: '20px',height:'auto', borderRadius:'10px'}}>
-             <div className="div" style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-             <Itembanner ><img src={'https://media.licdn.com/dms/image/C560BAQF6lm99eoAgjg/company-logo_200_200/0/1675197081133?e=2147483647&v=beta&t=Vmmcb012jJ98_Y2CyDrqrrLnPpokbUDRep7KX4IK2cg'} style={{height:'15rem'}} /></Itembanner>
+       
+        <div className="div"  style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+             <Itembanner >
+              
+              <img  src={'https://media.licdn.com/dms/image/C560BAQF6lm99eoAgjg/company-logo_200_200/0/1675197081133?e=2147483647&v=beta&t=Vmmcb012jJ98_Y2CyDrqrrLnPpokbUDRep7KX4IK2cg'} style={{height:'15rem'}} />
+
+              
+           
+
+             
+              </Itembanner>
              </div>
+            
+       
+             
         
         <Item elevation={5}>
   
