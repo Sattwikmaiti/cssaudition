@@ -134,6 +134,7 @@ const LoginPage = () => {
       console.error('Login failed');
       console.error('Error:', error);
     }
+    setLogin(false);
   };
 
   useEffect(() => {
@@ -183,7 +184,7 @@ const LoginPage = () => {
           </button> }
         </div>
 
-        <div className="input-containers">
+        {/* <div className="input-containers">
           <div className="i1">
              <a href="https://www.instagram.com/cssnitdgp/?hl=en" target="_blank"><InstagramIcon  /></a> 
           </div>
@@ -194,7 +195,7 @@ const LoginPage = () => {
            <a href="https://www.cssnitdgp.in/" target="_blank"> <LanguageIcon  /></a>
           </div>
           
-        </div>
+        </div> */}
 
         <svg  className="svg2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
   <path fill="#a2d9ff" fill-opacity="1" d="M0,160L18.5,133.3C36.9,107,74,53,111,69.3C147.7,85,185,171,222,202.7C258.5,235,295,213,332,197.3C369.2,181,406,171,443,186.7C480,203,517,245,554,266.7C590.8,288,628,288,665,261.3C701.5,235,738,181,775,133.3C812.3,85,849,43,886,42.7C923.1,43,960,85,997,85.3C1033.8,85,1071,43,1108,64C1144.6,85,1182,171,1218,192C1255.4,213,1292,171,1329,133.3C1366.2,96,1403,64,1422,48L1440,32L1440,320L1421.5,320C1403.1,320,1366,320,1329,320C1292.3,320,1255,320,1218,320C1181.5,320,1145,320,1108,320C1070.8,320,1034,320,997,320C960,320,923,320,886,320C849.2,320,812,320,775,320C738.5,320,702,320,665,320C627.7,320,591,320,554,320C516.9,320,480,320,443,320C406.2,320,369,320,332,320C295.4,320,258,320,222,320C184.6,320,148,320,111,320C73.8,320,37,320,18,320L0,320Z"></path>

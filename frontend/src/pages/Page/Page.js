@@ -236,14 +236,18 @@ console.log( userId)
         
         <Item elevation={5}>
   
-        <Typography  align="center"   style={{height:'5rem',display:'flex',justifyContent:'center',alignItems:'center',fontWeight:'bold',fontSize:'1rem'}}  gutterBottom>
+        <Typography  align="center"   style={{height:'5rem',display:'flex',justifyContent:'center',alignItems:'center',fontWeight:'bold',fontSize:'1rem'}} >
           CSE Students Society Audition Form
         </Typography>
-        <Typography  align="left"     gutterBottom>
+        <Typography  align="center"     gutterBottom>
           Priyanshu: <a href="tel:91 7301038000">+91 7301038000 </a>
             <br />
             
             Likhita : <a href="tel:91 8617868717">+91 8617868717</a>
+           
+        </Typography>
+        <Typography  align="center" >
+           <a href="https://chat.whatsapp.com/F0CaNSqK1O72yLGFnNAceL" target="_blank">Join Whatsapp Group</a>
         </Typography>
         </Item>
         <form>
