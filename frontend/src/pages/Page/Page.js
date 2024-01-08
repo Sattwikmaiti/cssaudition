@@ -2,6 +2,8 @@ import React,{useEffect,useState} from 'react';
 import { Container, Typography, TextField, Button } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import "./Page.css"
+import 'react-tooltip/dist/react-tooltip.css'
+import { Tooltip as ReactTooltip } from 'react-tooltip'
 import { styled } from '@mui/material/styles';
 import {useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -251,13 +253,17 @@ console.log( userId)
         <Typography  align="center"   style={{height:'5rem',display:'flex',justifyContent:'center',alignItems:'center',fontWeight:'bold',fontSize:'1rem'}} >
           CSE Students Society Audition Form
         </Typography>
-        <Typography  align="center"     gutterBottom>
+        <Typography  align="center"   >
           Priyanshu: <a href="tel:91 7301038000">+91 7301038000 </a>
             <br />
             
             Likhita : <a href="tel:91 8617868717">+91 8617868717</a>
-           
+
+        <br />
+        <br />
+        <p> Please Fill the form carefully and submit it. </p>
         </Typography>
+        
         
         </Item>
         <form>
@@ -361,7 +367,7 @@ console.log( userId)
   
   
            <Typography  align='left' gutterBottom>
-          Additional Links 1 (if any like figma, behance, dribble,youtube etc) 
+          Additional Links 1 (if any like figma, behance, dribble,youtube etc  )   [ NA if not applicable] 
         </Typography>
            <TextField id="standard-basic" className="inputs" value={data.add1}  onChange={handleonChange('add1')} variant="standard" />
             
@@ -373,7 +379,7 @@ console.log( userId)
   
   
            <Typography  align='left' gutterBottom>
-          Additional Links 2  
+          Additional Links 2   [ NA if not applicable]
         </Typography>
            <TextField id="standard-basic" className="inputs"  value={data.add2} onChange={handleonChange('add2')} variant="standard" />
             
@@ -388,17 +394,23 @@ console.log( userId)
             style={{backgroundColor: '#95B9C7',color:'black',marginBottom:'10px'}}
             fullWidth
              onClick={handleUpdateUser}
+
+              disabled ={data?.username==="" || data?.phone==="" || data?.roll==="" || data?.linkedin==="" || data?.github==="" ||data?.category.length===0}
           >
-            Save 
+            Save
             <ToastContainer />
           </Button>
           <Button
             variant="contained"
             style={{backgroundColor: '#95B9C7',color:'black'}}
             fullWidth
+            disabled ={data?.username==="" || data?.phone==="" || data?.roll==="" || data?.linkedin==="" || data?.github==="" || data?.category.length===0 }
              onClick={handleSubmitUser}
+            
           >
-            Submit
+            Submit 
+        
+
             <ToastContainer />
           </Button>
         </form>
