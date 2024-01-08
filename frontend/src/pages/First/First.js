@@ -185,7 +185,7 @@ const LoginPage = () => {
           </button> }
         </div>
 
-        <h6 className="welcome-text" style={{color:'grey'}}>Please Fill The Detail Form Page</h6>
+        <h6 className="welcome-text" style={{color:'black', fontStyle: 'italic',fontWeight:'bolder'}}><em>Please</em> wait after registration for detailed form </h6>
         {/* <div className="input-containers">
           <div className="i1">
              <a href="https://www.instagram.com/cssnitdgp/?hl=en" target="_blank"><InstagramIcon  /></a> 
