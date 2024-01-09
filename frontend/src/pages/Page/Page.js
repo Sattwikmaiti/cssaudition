@@ -261,7 +261,7 @@ console.log( userId)
 
         <br />
         <br />
-        <p> Please Fill the form carefully and submit it. </p>
+        <p> Please Fill the form completely and carefully and submit it. </p>
         </Typography>
         
         
@@ -272,7 +272,7 @@ console.log( userId)
   
   
            <Typography  align='left' gutterBottom>
-          Name
+          Name *
         </Typography>
            <TextField id="standard-basic" className="inputs"  value={data?.username}  onChange={handleonChange('username')} variant="standard" />
             
@@ -284,7 +284,7 @@ console.log( userId)
   
   
            <Typography  align='left' gutterBottom>
-          Phone Number 
+          Phone Number  *
         </Typography>
            <TextField id="standard-basic" className="inputs" value={data?.phone} onChange={handleonChange('phone')} variant="standard" />
             
@@ -295,7 +295,7 @@ console.log( userId)
   
   
            <Typography  align='left' gutterBottom>
-          Roll Number 
+          Roll Number *
         </Typography>
            <TextField id="standard-basic" className="inputs"  value={data?.roll} onChange={handleonChange('roll')}variant="standard" />
             
@@ -307,7 +307,7 @@ console.log( userId)
   
   
            <Typography  align='left' gutterBottom>
-          LinkedIn Profile Link
+          LinkedIn Profile Link (Make one if not made and paste the link)
         </Typography>
            <TextField id="standard-basic" className="inputs" value={data?.linkedin} onChange={handleonChange('linkedin')}variant="standard" />
             
@@ -319,7 +319,7 @@ console.log( userId)
   
   
            <Typography  align='left' gutterBottom>
-          Github Link ( For Developer Roles) 
+          Github Link * ( For Developer Roles or NA if not applicatble ) 
         </Typography>
            <TextField id="standard-basic" className="inputs"  value={data?.github}  onChange={handleonChange('github')}variant="standard" />
             
@@ -328,7 +328,7 @@ console.log( userId)
           </div>
           <div style={{ marginBottom: '20px' }}>
            <Item elevation={5}>
-           <InputLabel id="demo-multiple-chip-label">Interested Domains</InputLabel>
+           <InputLabel id="demo-multiple-chip-label">Interested Domains *</InputLabel>
            
           <Select
             labelId="demo-multiple-chip-label"
